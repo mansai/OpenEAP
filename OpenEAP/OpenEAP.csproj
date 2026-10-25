@@ -5,7 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-	<AssemblyVersion>2026.10.15.1</AssemblyVersion>
+	<AssemblyVersion>2026.10.25.1</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
