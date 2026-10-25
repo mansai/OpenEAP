@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>OpenEAP</RootNamespace>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+	<AssemblyVersion>2026.10.15.1</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <AvaloniaResource Include="Assets\**" />
+    <None Include="DB\eap.db" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\MenuViewModel - 复制.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AtomUI.Desktop.Controls" Version="6.2.5" />
+    <PackageReference Include="AtomUI.Desktop.Controls.DataGrid" Version="6.2.5" />
+    <PackageReference Include="Avalonia" Version="12.1.3" />
+	<PackageReference Include="Avalonia.Controls.MediaPlayer.Abstractions" Version="12.0.6" />
+	<PackageReference Include="Avalonia.Controls.RichTextEditor" Version="12.3.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.3" />
+    <PackageReference Include="Avalonia.Skia" Version="12.1.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.3" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.3" />
+    <PackageReference Include="Dock.Avalonia" Version="12.1.0.7" />
+    <PackageReference Include="Dock.Avalonia.Themes.Fluent" Version="12.1.0.7" />
+    <PackageReference Include="Dock.Model.ReactiveUI.Reactive" Version="12.1.0.7" />
+    <PackageReference Include="Dock.Serializer.Newtonsoft" Version="12.1.0.7" />
+    <PackageReference Include="ProDataGrid" Version="12.1.0.6" />
+    <PackageReference Include="bodong.Avalonia.PropertyGrid" Version="12.1.1.1" />
+    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="12.1.3" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="5.3.0" />
+    <PackageReference Include="ReactiveUI.Avalonia.Reactive" Version="12.1.6" />
+    <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+    <PackageReference Include="System.Reactive" Version="7.0.0" />
+	<PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3">
+		<IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+		<PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+	</PackageReference>
+	<PackageReference Include="bblanchon.PDFium" Version="157.0.8086" />
+	<PackageReference Include="ClosedXML" Version="0.105.1" />
+	<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+	<PackageReference Include="SkiaSharp" Version="4.153.1" />
+	<PackageReference Include="System.Drawing.Common" Version="10.0.5" />
+	<PackageReference Include="TerraFX.Interop.Vulkan" Version="1.4.328.1" />
+	<PackageReference Include="Vortice.Direct3D11" Version="3.8.3" />
+	<PackageReference Include="Vortice.MediaFoundation" Version="3.8.3" />
+	<PackageReference Include="Xaml.Behaviors.Avalonia" Version="12.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Avalonia.Controls.Charts">
+      <HintPath>..\Lib\Avalonia.Controls.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Controls.MediaPlayer">
+      <HintPath>..\Lib\Avalonia.Controls.MediaPlayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Controls.PdfViewer">
+      <HintPath>..\Lib\Avalonia.Controls.PdfViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Controls.VirtualKeyboard">
+      <HintPath>..\Lib\Avalonia.Controls.VirtualKeyboard.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetEditor.Controls">
+      <HintPath>..\Lib\SpreadsheetEditor.Controls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\HomeView.axaml.cs">
+      <DependentUpon>HomeView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="sound\NG.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sound\OK.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:atom="https://atomui.net"
+			 xmlns:icon="https://atomui.net/icons/antdesign"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Class="OpenEAP.Views.LogView" x:DataType="LogViewModel">
+	<DataGrid ItemsSource="{Binding Items}"
+			  CanUserResizeColumns="True"
+			  CanUserReorderColumns="True"
+			  CanUserSortColumns="True"
+			  CanUserAddRows="False"
+			  IsReadOnly="True"
+			  HeadersVisibility="All">
+		<DataGrid.Columns>
+			<DataGridTemplateColumn Header="{L Level}">
+				<DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					<StackPanel HorizontalAlignment="Center">
+								<atom:Button ButtonType="Primary" Shape="Circle" IsVisible="{Binding Level,Converter={StaticResource LevelIsVisibleConverter},ConverterParameter=Information}" SizeType="Small" Icon="{icon:AntDesignIconProvider InfoCircleOutlined}" />
+								<atom:Button ButtonType="Primary" Shape="Circle" IsVisible="{Binding Level,Converter={StaticResource LevelIsVisibleConverter},ConverterParameter=Error}" SizeType="Small" IsDanger="True" Icon="{icon:AntDesignIconProvider CloseCircleFilled}" />
+								<atom:Button Shape="Circle" SizeType="Small" IsVisible="{Binding Level,Converter={StaticResource LevelIsVisibleConverter},ConverterParameter=Warning}" Icon="{icon:AntDesignIconProvider ExclamationOutlined}" />
+							</StackPanel>
+					</DataTemplate>
+				</DataGridTemplateColumn.CellTemplate>
+			</DataGridTemplateColumn>
+			<DataGridTextColumn Header="{L Time}" Binding="{Binding Time}" Width="3*" />
+			<DataGridTextColumn Header="{L Message}" Binding="{Binding Message}" Width="7*" />
+		</DataGrid.Columns>
+	</DataGrid>
+</UserControl>

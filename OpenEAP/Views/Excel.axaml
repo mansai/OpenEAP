@@ -1,0 +1,23 @@
+<atom:Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:OpenEAP.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:atom="https://atomui.net"
+		xmlns:icon="https://atomui.net/icons/antdesign"
+		xmlns:se="clr-namespace:SpreadsheetEditor.Controls;assembly=SpreadsheetEditor.Controls"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="OpenEAP.Views.Excel"
+        Title="{x:Null}"
+        WindowState="Normal"
+        WindowStartupLocation="CenterScreen">
+	<atom:Window.LeftAddOn>
+		<StackPanel Orientation="Horizontal" Spacing="10">
+			<atom:Button ButtonType="Text" Icon="{icon:AntDesignIconProvider FolderOpenOutlined}" atom:ToolTip.Tip="{L Open}" Click="OnOpen" />
+			<atom:Button ButtonType="Text" Icon="{icon:AntDesignIconProvider SaveOutlined}" atom:ToolTip.Tip="{L Save}" Click="OnSaveAs" />
+			<atom:Button ButtonType="Text" Icon="{icon:AntDesignIconProvider FilePdfOutlined}" atom:ToolTip.Tip="{L Export}" Click="OnExportPdf" />
+			<atom:Button ButtonType="Text" Icon="{icon:AntDesignIconProvider PrinterOutlined}" atom:ToolTip.Tip="{L Print}" Click="OnPrint" />
+		</StackPanel>
+	</atom:Window.LeftAddOn>
+	<se:SpreadsheetEditor x:Name="Editor" />
+</atom:Window>

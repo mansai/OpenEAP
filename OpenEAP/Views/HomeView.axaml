@@ -1,0 +1,868 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:atom="https://atomui.net"
+             xmlns:icon="https://atomui.net/icons/antdesign"
+             xmlns:controls="using:OpenEAP.Controls"
+             xmlns:models="using:OpenEAP.Models.FlowChartDesigner"
+             xmlns:vm="using:OpenEAP.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="760"
+             x:Class="OpenEAP.Views.HomeView"
+              x:DataType="vm:HomeViewModel"
+            Background="{DynamicResource FlowWindowBrush}">
+        <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="FlowWindowBrush" Color="#0B0F15" />
+                    <SolidColorBrush x:Key="FlowPanelBrush" Color="#111823" />
+                    <SolidColorBrush x:Key="FlowPanelAltBrush" Color="#0E141D" />
+                    <SolidColorBrush x:Key="FlowSurfaceBrush" Color="#0C1118" />
+                    <SolidColorBrush x:Key="FlowBorderBrush" Color="#232D3C" />
+                    <SolidColorBrush x:Key="FlowTextBrush" Color="#E7EEF9" />
+                    <SolidColorBrush x:Key="FlowMutedBrush" Color="#8998AE" />
+                    <SolidColorBrush x:Key="FlowAccentBrush" Color="#4C8DFF" />
+                    <SolidColorBrush x:Key="FlowAccentSoftBrush" Color="#152946" />
+                    <SolidColorBrush x:Key="FlowAccentBorderBrush" Color="#2B4F86" />
+                    <SolidColorBrush x:Key="FlowSuccessBrush" Color="#34D399" />
+                    <SolidColorBrush x:Key="FlowDangerBrush" Color="#F87171" />
+                    <SolidColorBrush x:Key="FlowWarningBrush" Color="#FBBF24" />
+                    <SolidColorBrush x:Key="FlowHoverBrush" Color="#182233" />
+                    <SolidColorBrush x:Key="FlowSwatchBorderBrush" Color="#3A465A" />
+                    <SolidColorBrush x:Key="FlowInputBrush" Color="#0C1119" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="FlowWindowBrush" Color="#0B0F15" />
+                    <SolidColorBrush x:Key="FlowPanelBrush" Color="#111823" />
+                    <SolidColorBrush x:Key="FlowPanelAltBrush" Color="#0E141D" />
+                    <SolidColorBrush x:Key="FlowSurfaceBrush" Color="#0C1118" />
+                    <SolidColorBrush x:Key="FlowBorderBrush" Color="#232D3C" />
+                    <SolidColorBrush x:Key="FlowTextBrush" Color="#E7EEF9" />
+                    <SolidColorBrush x:Key="FlowMutedBrush" Color="#8998AE" />
+                    <SolidColorBrush x:Key="FlowAccentBrush" Color="#4C8DFF" />
+                    <SolidColorBrush x:Key="FlowAccentSoftBrush" Color="#152946" />
+                    <SolidColorBrush x:Key="FlowAccentBorderBrush" Color="#2B4F86" />
+                    <SolidColorBrush x:Key="FlowSuccessBrush" Color="#34D399" />
+                    <SolidColorBrush x:Key="FlowDangerBrush" Color="#F87171" />
+                    <SolidColorBrush x:Key="FlowWarningBrush" Color="#FBBF24" />
+                    <SolidColorBrush x:Key="FlowHoverBrush" Color="#182233" />
+                    <SolidColorBrush x:Key="FlowSwatchBorderBrush" Color="#3A465A" />
+                    <SolidColorBrush x:Key="FlowInputBrush" Color="#0C1119" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="FlowWindowBrush" Color="#F3F6FA" />
+                    <SolidColorBrush x:Key="FlowPanelBrush" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="FlowPanelAltBrush" Color="#F7F9FC" />
+                    <SolidColorBrush x:Key="FlowSurfaceBrush" Color="#EDF1F7" />
+                    <SolidColorBrush x:Key="FlowBorderBrush" Color="#DDE4EE" />
+                    <SolidColorBrush x:Key="FlowTextBrush" Color="#17202B" />
+                    <SolidColorBrush x:Key="FlowMutedBrush" Color="#67758A" />
+                    <SolidColorBrush x:Key="FlowAccentBrush" Color="#2563EB" />
+                    <SolidColorBrush x:Key="FlowAccentSoftBrush" Color="#E8F1FF" />
+                    <SolidColorBrush x:Key="FlowAccentBorderBrush" Color="#B9D3FF" />
+                    <SolidColorBrush x:Key="FlowSuccessBrush" Color="#16A34A" />
+                    <SolidColorBrush x:Key="FlowDangerBrush" Color="#DC2626" />
+                    <SolidColorBrush x:Key="FlowWarningBrush" Color="#D97706" />
+                    <SolidColorBrush x:Key="FlowHoverBrush" Color="#EFF4FB" />
+                    <SolidColorBrush x:Key="FlowSwatchBorderBrush" Color="#C9D4E2" />
+                    <SolidColorBrush x:Key="FlowInputBrush" Color="#FFFFFF" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <LinearGradientBrush x:Key="FlowHeaderBrush" StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#0D131D" Offset="0" />
+                <GradientStop Color="#101826" Offset="0.55" />
+                <GradientStop Color="#132033" Offset="1" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="FlowLogoBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#4C8DFF" Offset="0" />
+                <GradientStop Color="#2563EB" Offset="1" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.flow-section-title">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource FlowTextBrush}" />
+        </Style>
+        <Style Selector="TextBlock.flow-label">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Foreground" Value="{DynamicResource FlowMutedBrush}" />
+        </Style>
+        <Style Selector="TextBlock.flow-muted">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="{DynamicResource FlowMutedBrush}" />
+        </Style>
+        <Style Selector="TextBlock.flow-mono">
+            <Setter Property="FontFamily" Value="Consolas, JetBrains Mono, monospace" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Foreground" Value="{DynamicResource FlowMutedBrush}" />
+        </Style>
+        <Style Selector="Border.flow-inspector-card">
+            <Setter Property="Background" Value="{DynamicResource FlowPanelAltBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource FlowBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="13" />
+        </Style>
+        <Style Selector="Border.flow-divider">
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Background" Value="#263243" />
+            <Setter Property="Margin" Value="6,0" />
+        </Style>
+        <Style Selector="Button.header-tool">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#C3D2E7" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="9,6" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="Button.header-tool:pointerover">
+            <Setter Property="Background" Value="#1A2637" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+        </Style>
+        <Style Selector="Button.flow-tool">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource FlowMutedBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="6" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="CornerRadius" Value="7" />
+        </Style>
+        <Style Selector="Button.flow-tool:pointerover">
+            <Setter Property="Background" Value="{DynamicResource FlowHoverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource FlowTextBrush}" />
+        </Style>
+        <Style Selector="Button.shape-tile">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="Width" Value="104" />
+            <Setter Property="Height" Value="86" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="Button.shape-tile:pointerover">
+            <Setter Property="Background" Value="{DynamicResource FlowHoverBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource FlowAccentBorderBrush}" />
+        </Style>
+        <Style Selector="Button.panel-action">
+            <Setter Property="Background" Value="{DynamicResource FlowPanelAltBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource FlowBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource FlowTextBrush}" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="FontSize" Value="11" />
+        </Style>
+        <Style Selector="Button.panel-action:pointerover">
+            <Setter Property="Background" Value="{DynamicResource FlowHoverBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource FlowAccentBorderBrush}" />
+        </Style>
+        <Style Selector="Button.swatch-click">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Border.flow-swatch">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="Margin" Value="0,0,7,7" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="BorderBrush" Value="{DynamicResource FlowSwatchBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style Selector="TextBlock.preview-badge">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Foreground" Value="#8FBBFF" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="Button.overlay-action">
+            <Setter Property="Background" Value="{DynamicResource FlowAccentBrush}" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="14,7" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+        <!-- 顶部品牌与文档栏 -->
+        <Border Grid.Row="0" Background="{StaticResource FlowHeaderBrush}" BorderBrush="#1F2A3B" BorderThickness="0,0,0,1" Padding="18,11">
+            <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <Border Width="38" Height="38" CornerRadius="11" Background="{StaticResource FlowLogoBrush}">
+                        <Canvas Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Rectangle Canvas.Left="2" Canvas.Top="3" Width="9" Height="6" RadiusX="2" RadiusY="2" Fill="#FFFFFF" Opacity="0.96" />
+                            <Rectangle Canvas.Left="13" Canvas.Top="15" Width="9" Height="6" RadiusX="2" RadiusY="2" Fill="#FFFFFF" Opacity="0.96" />
+                            <Path Data="M6.5,9 L6.5,13 L17.5,13 L17.5,15" Stroke="#CFE3FF" StrokeThickness="1.6" />
+                        </Canvas>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center" Spacing="1">
+                        <TextBlock Text="{L FlowDesignerTitle}" FontSize="15" FontWeight="SemiBold" Foreground="#F4F8FF" />
+                        <TextBlock Text="{L FlowBrandTagline}" FontSize="9" Foreground="#71859E" LetterSpacing="1.2" />
+                    </StackPanel>
+                    <Border Background="#111B28" BorderBrush="#26364B" BorderThickness="1" CornerRadius="9" Padding="11,6" Margin="8,0,0,0" VerticalAlignment="Center"
+                            ToolTip.Tip="{Binding SaveStateText}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="◇" FontSize="12" Foreground="#6FA8FF" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding FileDisplayName}" FontSize="11" Foreground="#B7C6DA" VerticalAlignment="Center" />
+                            <Border Width="6" Height="6" CornerRadius="3" Background="{DynamicResource FlowWarningBrush}" VerticalAlignment="Center"
+                                    IsVisible="{Binding IsDirty}" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="3" VerticalAlignment="Center">
+                    <atom:Button ButtonType="Text" Classes="header-tool" Content="{L FlowNew}" Click="OnNewClick" Icon="{icon:AntDesignIconProvider FileAddOutlined}" />
+                    <atom:Button ButtonType="Text" Classes="header-tool" Content="{L FlowOpen}" Click="OnOpenClick" Icon="{icon:AntDesignIconProvider FolderOpenOutlined}" />
+                    <atom:Button ButtonType="Text" Classes="header-tool" Content="{L FlowSave}" Click="OnSaveClick" Icon="{icon:AntDesignIconProvider SaveOutlined}" />
+                    <atom:Button ButtonType="Text" Classes="header-tool" Content="{L FlowSaveAs}" Click="OnSaveAsClick" Icon="{icon:AntDesignIconProvider ExportOutlined}" />
+                    <Border Width="1" Height="22" Background="#263243" Margin="7,0" />
+                    <atom:Button ButtonType="Text" Classes="header-tool" Content="{L FlowImport}" ToolTip.Tip="{L FlowImportTip}">
+                        <atom:Button.Flyout>
+                            <MenuFlyout>
+                                <MenuItem Header="{L FlowImportBpmn}" Click="OnImportBpmnClick" />
+                                <MenuItem Header="{L FlowImportVisio}" Click="OnImportVisioClick" />
+                            </MenuFlyout>
+                        </atom:Button.Flyout>
+                    </atom:Button>
+                    <atom:Button ButtonType="Text" Classes="header-tool" Content="{L FlowExport}" ToolTip.Tip="{L FlowExportTip}">
+                        <atom:Button.Flyout>
+                            <MenuFlyout>
+                                <MenuItem Header="{L FlowExportPngMenu}" Click="OnExportPngClick" />
+                                <MenuItem Header="{L FlowExportSvgMenu}" Click="OnExportSvgClick" />
+                            </MenuFlyout>
+                        </atom:Button.Flyout>
+                    </atom:Button>
+                    <atom:Button ButtonType="Text" Classes="header-tool" Icon="{icon:AntDesignIconProvider PrinterOutlined}"
+                                 AutomationProperties.Name="{L FlowPrintPreview}"
+                                 ToolTip.Tip="{L FlowPrintPreviewTip}" Click="OnPrintPreviewClick" />
+                    <Border Width="1" Height="22" Background="#263243" Margin="7,0" />
+                    <atom:Button ButtonType="Primary" Content="{Binding PreviewButtonText}" Click="OnTogglePreviewClick"
+                                 Icon="{icon:AntDesignIconProvider PlayCircleOutlined}" CornerRadius="8" Padding="13,7" FontSize="12" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- 工具栏 -->
+        <Border Grid.Row="1" Background="{DynamicResource FlowPanelBrush}" BorderBrush="{DynamicResource FlowBorderBrush}" BorderThickness="0,0,0,1" Padding="14,6"
+                IsVisible="{Binding !IsPreviewMode}">
+            <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="3">
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnUndoClick" IsEnabled="{Binding CanUndo}"
+                                 Icon="{icon:AntDesignIconProvider UndoOutlined}" ToolTip.Tip="{L FlowUndoTip}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnRedoClick" IsEnabled="{Binding CanRedo}"
+                                 Icon="{icon:AntDesignIconProvider RedoOutlined}" ToolTip.Tip="{L FlowRedoTip}" />
+                    <Border Classes="flow-divider" />
+                    <atom:Segmented x:Name="ToolSegment" SelectedIndex="0" VerticalAlignment="Center" SelectionChanged="OnToolSegmentChanged">
+                        <atom:SegmentedItem Content="{L FlowSelectTool}" Icon="{icon:AntDesignIconProvider GatewayOutlined}" Tag="Select" />
+                        <atom:SegmentedItem Content="{L FlowConnectTool}" Icon="{icon:AntDesignIconProvider FallOutlined}" Tag="Connect" />
+                        <atom:SegmentedItem Content="{L FlowPanTool}" Icon="{icon:AntDesignIconProvider DragOutlined}" Tag="Pan" />
+                    </atom:Segmented>
+                    <Border Classes="flow-divider" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Tag="Left" Click="OnAlignClick" IsEnabled="{Binding CanAlign}"
+                                 Icon="{icon:AntDesignIconProvider AlignLeftOutlined}" ToolTip.Tip="{L FlowAlignLeftTip}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Tag="CenterX" Click="OnAlignClick" IsEnabled="{Binding CanAlign}"
+                                 Icon="{icon:AntDesignIconProvider AlignCenterOutlined}" ToolTip.Tip="{L FlowAlignCenterXTip}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Tag="Right" Click="OnAlignClick" IsEnabled="{Binding CanAlign}"
+                                 Icon="{icon:AntDesignIconProvider AlignRightOutlined}" ToolTip.Tip="{L FlowAlignRight}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Tag="Top" Click="OnAlignClick" IsEnabled="{Binding CanAlign}"
+                                 Icon="{icon:AntDesignIconProvider BorderTopOutlined}" ToolTip.Tip="{L FlowAlignTop}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Tag="CenterY" Click="OnAlignClick" IsEnabled="{Binding CanAlign}"
+                                 Icon="{icon:AntDesignIconProvider BorderHorizontalOutlined}" ToolTip.Tip="{L FlowAlignCenterYTip}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Tag="Bottom" Click="OnAlignClick" IsEnabled="{Binding CanAlign}"
+                                 Icon="{icon:AntDesignIconProvider BorderBottomOutlined}" ToolTip.Tip="{L FlowAlignBottom}" />
+                    <Border Classes="flow-divider" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnAutoLayoutClick" MinWidth="88"
+                                 Icon="{icon:AntDesignIconProvider ApartmentOutlined}" Content="{L FlowAutoLayout}" ToolTip.Tip="{L FlowAutoLayoutTip}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnDuplicateSelectionClick" IsEnabled="{Binding HasSelection}"
+                                 Icon="{icon:AntDesignIconProvider CopyOutlined}" ToolTip.Tip="{L FlowDuplicateSelectionTip}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnDeleteSelectionClick" IsEnabled="{Binding HasSelection}"
+                                 Icon="{icon:AntDesignIconProvider DeleteOutlined}" ToolTip.Tip="{L FlowDeleteSelectionTip}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="3" VerticalAlignment="Center">
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnZoomOutClick"
+                                 Icon="{icon:AntDesignIconProvider ZoomOutOutlined}" ToolTip.Tip="{L FlowZoomOut}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Width="50" Click="OnResetZoomClick" ToolTip.Tip="{L FlowResetZoomTip}">
+                        <TextBlock Text="{Binding ZoomText}" FontSize="11" Foreground="{DynamicResource FlowMutedBrush}" />
+                    </atom:Button>
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnZoomInClick"
+                                 Icon="{icon:AntDesignIconProvider ZoomInOutlined}" ToolTip.Tip="{L FlowZoomIn}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnFitClick"
+                                 Icon="{icon:AntDesignIconProvider CompressOutlined}" ToolTip.Tip="{L FlowFitCanvasTip}" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Click="OnCenterSelectionClick"
+                                 Icon="{icon:AntDesignIconProvider AimOutlined}" ToolTip.Tip="{L FlowCenterSelectionTip}" />
+                    <Border Classes="flow-divider" />
+                    <atom:Button ButtonType="Text" Classes="flow-tool" Icon="{icon:AntDesignIconProvider EyeOutlined}"
+                                 FontSize="10" ToolTip.Tip="{L FlowMiniMapTip}" Click="OnToggleMiniMapClick" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- 主体工作区 -->
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto">
+            <!-- 左侧形状库 -->
+            <Border Grid.Column="0" Width="248" Background="{DynamicResource FlowPanelBrush}" BorderBrush="{DynamicResource FlowBorderBrush}" BorderThickness="0,0,1,0"
+                    IsVisible="{Binding IsShapePanelShown}">
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <StackPanel Grid.Row="0" Margin="16,15,16,8" Spacing="3">
+                        <Grid ColumnDefinitions="*,Auto,Auto">
+                            <TextBlock Text="{L FlowShapeLibrary}" Classes="flow-section-title" />
+                            <TextBlock Grid.Column="1" Text="{Binding ShapeCountText}" Classes="flow-label" VerticalAlignment="Center" Margin="0,0,4,0" />
+                            <atom:Button Grid.Column="2" ButtonType="Text" Classes="flow-tool" Width="24" Height="24" Padding="0"
+                                         Content="«" FontSize="13" ToolTip.Tip="{L FlowCollapseShapeLibrary}" Click="OnToggleShapePanelClick" />
+                        </Grid>
+                        <TextBlock Text="{L FlowShapeLibraryHint}" Classes="flow-label" />
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Margin="10,2,10,10">
+                            <ItemsControl ItemsSource="{Binding ShapePalette}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="models:FlowShapeDefinition">
+                                        <atom:Button Classes="shape-tile" Click="OnPaletteShapeClick" Margin="2"
+                                                     ToolTip.Tip="{Binding DefaultTitle}" ToolTip.Placement="Right">
+                                            <Grid RowDefinitions="38,Auto">
+                                                <controls:FlowShapePreview Kind="{Binding Kind}" Fill="{Binding DefaultFill}"
+                                                                           Width="56" Height="30"
+                                                                           Margin="0,3,0,0"
+                                                                           HorizontalAlignment="Center" VerticalAlignment="Top" />
+                                                <TextBlock Grid.Row="1" Text="{Binding DisplayName}" FontSize="10.5"
+                                                           Foreground="{DynamicResource FlowMutedBrush}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Top"
+                                                           Margin="0,5,0,0"
+                                                           TextAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="90" />
+                                            </Grid>
+                                        </atom:Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <Border Height="1" Background="{DynamicResource FlowBorderBrush}" Margin="5,10,5,12" />
+                            <TextBlock Text="{L FlowQuickStart}" Classes="flow-label" Margin="5,0,0,7" />
+                            <Grid ColumnDefinitions="*,*">
+                                <atom:Button Grid.Column="0" Classes="panel-action" Content="{L FlowBlankCanvas}" Margin="4,0,3,0" Padding="5,6" Click="OnBlankDocumentClick" />
+                                <atom:Button Grid.Column="1" Classes="panel-action" Content="{L FlowLoadSample}" Margin="3,0,4,0" Padding="5,6" Click="OnLoadSampleClick" />
+                            </Grid>
+
+                            <Border Classes="flow-inspector-card" Margin="4,14,4,6" Padding="11">
+                                <StackPanel Spacing="6">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="✦" Foreground="{DynamicResource FlowAccentBrush}" FontSize="12" />
+                                        <TextBlock Text="{L FlowTipsTitle}" Classes="flow-section-title" FontSize="11" />
+                                    </StackPanel>
+                                    <TextBlock Text="{L FlowShapeTips}"
+                                               Classes="flow-label" TextWrapping="Wrap" LineHeight="17" />
+                                    <TextBlock Text="{L FlowKeyboardTips}" Classes="flow-mono" Margin="0,2,0,0" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <Border Grid.Row="2" BorderBrush="{DynamicResource FlowBorderBrush}" BorderThickness="0,1,0,0" Padding="16,11,16,14">
+                        <StackPanel Spacing="9">
+                            <TextBlock Text="{L FlowCanvasSettings}" Classes="flow-section-title" />
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{L FlowShowGrid}" FontSize="11" Foreground="{DynamicResource FlowTextBrush}" />
+                                    <TextBlock Text="{L FlowShowGridHint}" Classes="flow-label" />
+                                </StackPanel>
+                                <atom:ToggleSwitch Grid.Column="1" IsChecked="{Binding ShowGrid, Mode=TwoWay}" SizeType="Small" VerticalAlignment="Center" />
+                            </Grid>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{L FlowSnapGrid}" FontSize="11" Foreground="{DynamicResource FlowTextBrush}" />
+                                    <TextBlock Text="{L FlowSnapGridHint}" Classes="flow-label" />
+                                </StackPanel>
+                                <atom:ToggleSwitch Grid.Column="1" IsChecked="{Binding SnapToGrid, Mode=TwoWay}" SizeType="Small" VerticalAlignment="Center" />
+                            </Grid>
+                            <Grid ColumnDefinitions="*,Auto" Margin="0,2,0,0">
+                                <TextBlock Text="{Binding StatisticsText}" Classes="flow-label" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="1" Text="{Binding SaveStateText}" Classes="flow-label" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- 中央画布 -->
+            <Grid Grid.Column="1" Background="{DynamicResource FlowSurfaceBrush}" ClipToBounds="True">
+                <controls:FlowDiagramCanvas x:Name="DesignerCanvas" />
+
+                <!-- 折叠后的恢复入口 -->
+                <atom:Button Classes="panel-action" Content="{L FlowRestoreShapeLibrary}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                             Margin="15,54,0,0" IsVisible="{Binding IsShapePanelCollapsed}" Click="OnToggleShapePanelClick" />
+                <atom:Button Classes="panel-action" Content="{L FlowRestoreInspector}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                             Margin="0,54,15,0" IsVisible="{Binding IsInspectorCollapsed}" Click="OnToggleInspectorClick" />
+
+                <!-- 画布操作提示 -->
+                <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Padding="10,6"
+                        Background="#D9121923" BorderBrush="#2A3749" BorderThickness="1" CornerRadius="8"
+                        IsVisible="{Binding !IsPreviewMode}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Ellipse Width="6" Height="6" Fill="{DynamicResource FlowAccentBrush}" VerticalAlignment="Center" />
+                        <TextBlock Text="{L FlowCanvasHint}" FontSize="10.5" Foreground="#A4B4CA" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 空状态 -->
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30,26"
+                        Background="{DynamicResource FlowPanelBrush}" BorderBrush="{DynamicResource FlowBorderBrush}" BorderThickness="1"
+                        CornerRadius="18" MinWidth="350" IsVisible="{Binding IsEmptyDocument}">
+                    <StackPanel Spacing="13" HorizontalAlignment="Center">
+                        <Border Width="66" Height="58" CornerRadius="16" Background="{DynamicResource FlowAccentSoftBrush}"
+                                BorderBrush="{DynamicResource FlowAccentBorderBrush}" BorderThickness="1" HorizontalAlignment="Center">
+                            <Viewbox Width="42" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Canvas Width="46" Height="40">
+                                    <Rectangle Canvas.Left="3" Canvas.Top="2" Width="18" Height="10" RadiusX="4" RadiusY="4"
+                                               Fill="#4C8DFF" Opacity="0.92" />
+                                    <Rectangle Canvas.Left="25" Canvas.Top="26" Width="18" Height="10" RadiusX="4" RadiusY="4"
+                                               Fill="#22C55E" Opacity="0.92" />
+                                    <Path Data="M12,12 L12,22 L34,22 L34,26" Stroke="#8FBBFF" StrokeThickness="2" />
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+                        <StackPanel Spacing="4" HorizontalAlignment="Center">
+                            <TextBlock Text="{L FlowEmptyTitle}" FontSize="17" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource FlowTextBrush}" HorizontalAlignment="Center" />
+                            <TextBlock Text="{L FlowEmptyHint}" Classes="flow-muted"
+                                       HorizontalAlignment="Center" TextAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                            <atom:Button ButtonType="Primary" Classes="overlay-action" Content="{L FlowAddProcess}" Click="OnAddProcessClick"
+                                         IsVisible="{Binding !IsPreviewMode}" />
+                            <atom:Button Classes="panel-action" Content="{L FlowLoadSample}" Click="OnLoadSampleClick"
+                                         IsVisible="{Binding !IsPreviewMode}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 演示预览提示 -->
+                <Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Padding="13,8"
+                        Background="#E6152946" BorderBrush="#3D6DAA" BorderThickness="1" CornerRadius="9"
+                        IsVisible="{Binding IsPreviewMode}">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="{L FlowPreviewMode}" Classes="preview-badge" VerticalAlignment="Center" />
+                        <Border Width="1" Height="13" Background="#3D6DAA" />
+                        <TextBlock Text="{L FlowPreviewExitHint}" FontSize="10.5" Foreground="#A9C6EF" VerticalAlignment="Center" />
+                        <atom:Button ButtonType="Text" Content="{L FlowExitPreview}" FontSize="10.5" Foreground="#8FBBFF" Padding="6,1" Click="OnTogglePreviewClick" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 左下状态 -->
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15" Spacing="4" IsVisible="{Binding !IsPreviewMode}">
+                    <Border Background="#C9121923" CornerRadius="6" Padding="8,4" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding SelectionPositionText}" Classes="flow-mono" Foreground="#93A5BC" />
+                    </Border>
+                    <TextBlock Text="{L FlowSpacePanHint}" FontSize="9.5" Foreground="#62748B" Margin="2,0,0,0" />
+                </StackPanel>
+            </Grid>
+
+            <!-- 右侧属性检查器 -->
+            <Border Grid.Column="2" Width="304" Background="{DynamicResource FlowPanelBrush}" BorderBrush="{DynamicResource FlowBorderBrush}" BorderThickness="1,0,0,0"
+                    IsVisible="{Binding IsInspectorShown}">
+                <Grid RowDefinitions="Auto,*">
+                    <Border Grid.Row="0" BorderBrush="{DynamicResource FlowBorderBrush}" BorderThickness="0,0,0,1" Padding="15,14">
+                        <Grid ColumnDefinitions="*,Auto,Auto">
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="{L FlowInspector}" Classes="flow-section-title" />
+                                <TextBlock Text="{Binding SelectionTitle}" FontSize="10.5" Foreground="{DynamicResource FlowMutedBrush}"
+                                           TextTrimming="CharacterEllipsis" MaxWidth="174" />
+                            </StackPanel>
+                            <Border Grid.Column="1" Background="{DynamicResource FlowAccentSoftBrush}" BorderBrush="{DynamicResource FlowAccentBorderBrush}"
+                                    BorderThickness="1" CornerRadius="6" Padding="7,3" VerticalAlignment="Center" Margin="0,0,4,0">
+                                <TextBlock Text="{Binding SelectionTypeText}" FontSize="9.5" Foreground="{DynamicResource FlowAccentBrush}" />
+                            </Border>
+                            <atom:Button Grid.Column="2" ButtonType="Text" Classes="flow-tool" Width="24" Height="24" Padding="0"
+                                         Content="»" FontSize="13" ToolTip.Tip="{L FlowCollapseInspector}" Click="OnToggleInspectorClick" />
+                        </Grid>
+                    </Border>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Margin="13,13,13,24" Spacing="10">
+                            <!-- 节点属性 -->
+                            <Border Classes="flow-inspector-card" IsVisible="{Binding HasNodeSelection}">
+                                <StackPanel Spacing="11">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="◉" Foreground="{DynamicResource FlowAccentBrush}" FontSize="12" />
+                                        <TextBlock Text="{L FlowNodeContent}" Classes="flow-section-title" />
+                                    </StackPanel>
+
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{L FlowTitle}" Classes="flow-label" />
+                                        <atom:LineEdit x:Name="TitleEdit" Text="{Binding NodeTitle, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                       StyleVariant="Filled" Watermark="{L FlowTitleWatermark}" FontSize="12" />
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{L FlowSubtitle}" Classes="flow-label" />
+                                        <atom:LineEdit Text="{Binding NodeSubtitle, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                       StyleVariant="Filled" Watermark="{L FlowSubtitleWatermark}" FontSize="12" />
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{L FlowNodeType}" Classes="flow-label" />
+                                        <atom:ComboBox SelectedIndex="{Binding NodeKindIndex, Mode=TwoWay}" StyleVariant="Filled" FontSize="12" HorizontalAlignment="Stretch">
+                                            <atom:ComboBoxItem Content="{L FlowShapeStartEnd}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeProcess}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeDecision}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeData}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeDocument}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeDatabase}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeSubprocess}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeConnector}" />
+                                            <atom:ComboBoxItem Content="{L FlowShapeImage}" />
+                                        </atom:ComboBox>
+                                    </StackPanel>
+
+                                    <Border Height="1" Background="{DynamicResource FlowBorderBrush}" Margin="0,1" />
+                                    <TextBlock Text="{L FlowPositionSize}" Classes="flow-label" FontSize="10.5" FontWeight="SemiBold" />
+                                    <Grid ColumnDefinitions="*,*">
+                                        <StackPanel Spacing="3" Margin="0,0,4,0">
+                                            <TextBlock Text="X" Classes="flow-label" />
+                                            <atom:NumericUpDown Value="{Binding NodeX, Mode=TwoWay}" StyleVariant="Filled" FormatString="0"
+                                                                Increment="10" ShowButtonSpinner="False" FontSize="11" Height="30" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="3" Margin="4,0,0,0">
+                                            <TextBlock Text="Y" Classes="flow-label" />
+                                            <atom:NumericUpDown Value="{Binding NodeY, Mode=TwoWay}" StyleVariant="Filled" FormatString="0"
+                                                                Increment="10" ShowButtonSpinner="False" FontSize="11" Height="30" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*">
+                                        <StackPanel Spacing="3" Margin="0,0,4,0">
+                                            <TextBlock Text="{L FlowWidth}" Classes="flow-label" />
+                                            <atom:NumericUpDown Value="{Binding NodeWidth, Mode=TwoWay}" Minimum="48" Maximum="4000" StyleVariant="Filled"
+                                                                FormatString="0" Increment="10" ShowButtonSpinner="False" FontSize="11" Height="30" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="3" Margin="4,0,0,0">
+                                            <TextBlock Text="{L FlowHeight}" Classes="flow-label" />
+                                            <atom:NumericUpDown Value="{Binding NodeHeight, Mode=TwoWay}" Minimum="40" Maximum="4000" StyleVariant="Filled"
+                                                                FormatString="0" Increment="10" ShowButtonSpinner="False" FontSize="11" Height="30" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <StackPanel Spacing="3" Margin="0,0,4,0">
+                                            <TextBlock Text="{L FlowRotation}" Classes="flow-label" />
+                                            <atom:NumericUpDown Value="{Binding NodeRotation, Mode=TwoWay}" Minimum="0" Maximum="360" StyleVariant="Filled"
+                                                                FormatString="0" Increment="15" ShowButtonSpinner="True" FontSize="11" Height="30" Width="60" />
+                                        </StackPanel>
+                                        <atom:Button Grid.Column="1" Classes="panel-action" Content="{L FlowResetRotation}" VerticalAlignment="Bottom"
+                                                     Height="30" Margin="4,0,0,0" Click="OnResetRotationClick" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Classes="flow-inspector-card" IsVisible="{Binding HasNodeSelection}">
+                                <StackPanel Spacing="11">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="◈" Foreground="{DynamicResource FlowAccentBrush}" FontSize="12" />
+                                        <TextBlock Text="{L FlowAppearance}" Classes="flow-section-title" />
+                                    </StackPanel>
+                                    <StackPanel Spacing="6">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{L FlowFillColor}" Classes="flow-label" />
+                                            <TextBlock Grid.Column="1" Text="{Binding NodeFill}" Classes="flow-mono" />
+                                        </Grid>
+                                        <ItemsControl ItemsSource="{Binding FillPalette}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate><WrapPanel Orientation="Horizontal" /></ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Classes="flow-swatch" Background="{Binding}" ToolTip.Tip="{Binding}"
+                                                            PointerPressed="OnFillSwatchClick" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                    <StackPanel Spacing="6">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{L FlowTextColor}" Classes="flow-label" />
+                                            <TextBlock Grid.Column="1" Text="{Binding NodeTextColor}" Classes="flow-mono" />
+                                        </Grid>
+                                        <ItemsControl ItemsSource="{Binding TextPalette}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate><WrapPanel Orientation="Horizontal" /></ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Classes="flow-swatch" Background="{Binding}" ToolTip.Tip="{Binding}"
+                                                            PointerPressed="OnTextSwatchClick" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{L FlowFontSize}" Classes="flow-label" />
+                                            <TextBlock Grid.Column="1" Text="{Binding NodeFontSize, StringFormat='{}{0:0} px'}" Classes="flow-mono" />
+                                        </Grid>
+                                        <atom:Slider Minimum="9" Maximum="36" Value="{Binding NodeFontSize, Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" />
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{L FlowCornerRadius}" Classes="flow-label" />
+                                            <TextBlock Grid.Column="1" Text="{Binding NodeCornerRadius, StringFormat='{}{0:0} px'}" Classes="flow-mono" />
+                                        </Grid>
+                                        <atom:Slider Minimum="0" Maximum="32" Value="{Binding NodeCornerRadius, Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" />
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{L FlowStrokeWidth}" Classes="flow-label" />
+                                            <TextBlock Grid.Column="1" Text="{Binding NodeStrokeWidth, StringFormat='{}{0:0.0} px'}" Classes="flow-mono" />
+                                        </Grid>
+                                        <atom:Slider Minimum="0" Maximum="6" Value="{Binding NodeStrokeWidth, Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="0.5" />
+                                    </StackPanel>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowBoldTitle}" FontSize="11" Foreground="{DynamicResource FlowTextBrush}" VerticalAlignment="Center" />
+                                        <atom:ToggleSwitch Grid.Column="1" IsChecked="{Binding NodeIsBold, Mode=TwoWay}" SizeType="Small" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 执行效果 -->
+                            <Border Classes="flow-inspector-card" IsVisible="{Binding HasNodeSelection}">
+                                <StackPanel Spacing="10">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="◌" Foreground="{DynamicResource FlowAccentBrush}" FontSize="13" />
+                                        <TextBlock Text="{L FlowExecution}" Classes="flow-section-title" />
+                                    </StackPanel>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <StackPanel Spacing="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{L FlowIsRunning}" FontSize="11" Foreground="{DynamicResource FlowTextBrush}" />
+                                            <TextBlock Text="{L FlowExecutionHint}" Classes="flow-label" />
+                                        </StackPanel>
+                                        <atom:ToggleSwitch Grid.Column="1" IsChecked="{Binding NodeIsRunning, Mode=TwoWay}" SizeType="Small" VerticalAlignment="Center" />
+                                    </Grid>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{L FlowExecutionEffect}" Classes="flow-label" />
+                                        <atom:ComboBox SelectedIndex="{Binding NodeExecutionEffectIndex, Mode=TwoWay}" StyleVariant="Filled"
+                                                       FontSize="11" HorizontalAlignment="Stretch" IsEnabled="{Binding NodeIsRunning}">
+                                            <atom:ComboBoxItem Content="{L FlowEffectNone}" />
+                                            <atom:ComboBoxItem Content="{L FlowEffectBreathing}" />
+                                            <atom:ComboBoxItem Content="{L FlowEffectPulse}" />
+                                            <atom:ComboBoxItem Content="{L FlowEffectGlow}" />
+                                        </atom:ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 图片节点 -->
+                            <Border Classes="flow-inspector-card" IsVisible="{Binding IsImageNodeSelected}">
+                                <StackPanel Spacing="9">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="▧" Foreground="{DynamicResource FlowAccentBrush}" FontSize="12" />
+                                        <TextBlock Text="{L FlowImageNode}" Classes="flow-section-title" />
+                                    </StackPanel>
+                                    <TextBlock Text="{L FlowImageHint}" Classes="flow-label" TextWrapping="Wrap" />
+                                    <atom:Button Classes="panel-action" Content="{L FlowChangeImage}" Click="OnChangeNodeImageClick"
+                                                 HorizontalContentAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 连线属性 -->
+                            <Border Classes="flow-inspector-card" IsVisible="{Binding HasLinkSelection}">
+                                <StackPanel Spacing="11">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="↗" Foreground="{DynamicResource FlowAccentBrush}" FontSize="12" />
+                                        <TextBlock Text="{L FlowLinkSettings}" Classes="flow-section-title" />
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{L FlowLinkLabel}" Classes="flow-label" />
+                                        <atom:LineEdit Text="{Binding LinkLabel, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                       StyleVariant="Filled" Watermark="{L FlowLinkLabelWatermark}" FontSize="12" />
+                                    </StackPanel>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <StackPanel Spacing="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{L FlowShowLabelBox}" FontSize="11" Foreground="{DynamicResource FlowTextBrush}" />
+                                            <TextBlock Text="{L FlowShowLabelBoxHint}" Classes="flow-label" />
+                                        </StackPanel>
+                                        <atom:ToggleSwitch Grid.Column="1" IsChecked="{Binding LinkShowLabel, Mode=TwoWay}" SizeType="Small" VerticalAlignment="Center" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*">
+                                        <StackPanel Spacing="4" Margin="0,0,4,0">
+                                            <TextBlock Text="{L FlowLinkStyle}" Classes="flow-label" />
+                                            <atom:ComboBox SelectedIndex="{Binding LinkStyleIndex, Mode=TwoWay}" StyleVariant="Filled" FontSize="11" HorizontalAlignment="Stretch">
+                                                <atom:ComboBoxItem Content="{L FlowOrthogonal}" />
+                                                <atom:ComboBoxItem Content="{L FlowStraight}" />
+                                                <atom:ComboBoxItem Content="{L FlowCurved}" />
+                                            </atom:ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="4" Margin="4,0,0,0">
+                                            <TextBlock Text="{L FlowArrow}" Classes="flow-label" />
+                                            <atom:ComboBox SelectedIndex="{Binding ArrowStyleIndex, Mode=TwoWay}" StyleVariant="Filled" FontSize="11" HorizontalAlignment="Stretch">
+                                                <atom:ComboBoxItem Content="{L FlowArrowEnd}" />
+                                                <atom:ComboBoxItem Content="{L FlowArrowBoth}" />
+                                                <atom:ComboBoxItem Content="{L FlowArrowNone}" />
+                                            </atom:ComboBox>
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel Spacing="6">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{L FlowLinkColor}" Classes="flow-label" />
+                                            <TextBlock Grid.Column="1" Text="{Binding LinkColor}" Classes="flow-mono" />
+                                        </Grid>
+                                        <ItemsControl ItemsSource="{Binding LinkPalette}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate><WrapPanel Orientation="Horizontal" /></ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Classes="flow-swatch" Background="{Binding}" ToolTip.Tip="{Binding}"
+                                                            PointerPressed="OnLinkSwatchClick" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{L FlowLineWidth}" Classes="flow-label" />
+                                            <TextBlock Grid.Column="1" Text="{Binding LinkStrokeWidth, StringFormat='{}{0:0.0} px'}" Classes="flow-mono" />
+                                        </Grid>
+                                        <atom:Slider Minimum="1" Maximum="6" Value="{Binding LinkStrokeWidth, Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="0.5" />
+                                    </StackPanel>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowDashed}" FontSize="11" Foreground="{DynamicResource FlowTextBrush}" VerticalAlignment="Center" />
+                                        <atom:ToggleSwitch Grid.Column="1" IsChecked="{Binding LinkIsDashed, Mode=TwoWay}" SizeType="Small" />
+                                    </Grid>
+                                    <atom:Button ButtonType="Dashed" IsDanger="True" Content="{L FlowDeleteLink}" Click="OnDeleteSelectionClick"
+                                                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" CornerRadius="8" FontSize="11" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 多选操作 -->
+                            <Border Classes="flow-inspector-card" IsVisible="{Binding HasMultipleSelection}">
+                                <StackPanel Spacing="10">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="⊞" Foreground="{DynamicResource FlowAccentBrush}" FontSize="12" />
+                                        <TextBlock Text="{L FlowMultiLayout}" Classes="flow-section-title" />
+                                    </StackPanel>
+                                    <TextBlock Text="{L FlowMultiHint}" Classes="flow-label" TextWrapping="Wrap" />
+                                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto">
+                                        <atom:Button Grid.Row="0" Grid.Column="0" Classes="panel-action" Content="{L FlowAlignLeft}" Tag="Left" Click="OnAlignClick" Margin="0,0,3,4" />
+                                        <atom:Button Grid.Row="0" Grid.Column="1" Classes="panel-action" Content="{L FlowAlignCenterX}" Tag="CenterX" Click="OnAlignClick" Margin="3,0,3,4" />
+                                        <atom:Button Grid.Row="0" Grid.Column="2" Classes="panel-action" Content="{L FlowAlignRight}" Tag="Right" Click="OnAlignClick" Margin="3,0,0,4" />
+                                        <atom:Button Grid.Row="1" Grid.Column="0" Classes="panel-action" Content="{L FlowAlignTop}" Tag="Top" Click="OnAlignClick" Margin="0,0,3,0" />
+                                        <atom:Button Grid.Row="1" Grid.Column="1" Classes="panel-action" Content="{L FlowAlignCenterY}" Tag="CenterY" Click="OnAlignClick" Margin="3,0,3,0" />
+                                        <atom:Button Grid.Row="1" Grid.Column="2" Classes="panel-action" Content="{L FlowAlignBottom}" Tag="Bottom" Click="OnAlignClick" Margin="3,0,0,0" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*">
+                                        <atom:Button Grid.Column="0" Classes="panel-action" Content="{L FlowDistributeH}" Tag="DistributeHorizontal" Click="OnAlignClick" Margin="0,0,3,0" />
+                                        <atom:Button Grid.Column="1" Classes="panel-action" Content="{L FlowDistributeV}" Tag="DistributeVertical" Click="OnAlignClick" Margin="3,0,0,0" />
+                                    </Grid>
+                                    <atom:Button ButtonType="Primary" Content="{L FlowAutoLayoutAll}" Click="OnAutoLayoutClick" CornerRadius="8"
+                                                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontSize="11" />
+                                    <Grid ColumnDefinitions="*,*">
+                                        <atom:Button Grid.Column="0" Classes="panel-action" Content="{L FlowDuplicateSelected}" Click="OnDuplicateSelectionClick" Margin="0,0,3,0" />
+                                        <atom:Button Grid.Column="1" Classes="panel-action" Content="{L FlowDeleteSelected}" Click="OnDeleteSelectionClick" Margin="3,0,0,0"
+                                                     Foreground="{DynamicResource FlowDangerBrush}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 未选择提示 -->
+                            <Border Classes="flow-inspector-card" IsVisible="{Binding HasNoSelection}">
+                                <StackPanel Spacing="8">
+                                    <Border Width="40" Height="40" CornerRadius="12" Background="{DynamicResource FlowAccentSoftBrush}"
+                                            HorizontalAlignment="Left">
+                                        <TextBlock Text="✦" FontSize="17" Foreground="{DynamicResource FlowAccentBrush}"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <TextBlock Text="{L FlowNoSelection}" Classes="flow-section-title" />
+                                    <TextBlock Text="{L FlowNoSelectionHint}"
+                                               Classes="flow-label" TextWrapping="Wrap" LineHeight="17" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 文档信息 -->
+                            <Border Classes="flow-inspector-card">
+                                <StackPanel Spacing="9">
+                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                        <TextBlock Text="▤" Foreground="{DynamicResource FlowAccentBrush}" FontSize="12" />
+                                        <TextBlock Text="{L FlowDocument}" Classes="flow-section-title" />
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{L FlowDocumentName}" Classes="flow-label" />
+                                        <atom:LineEdit Text="{Binding DocumentTitle, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                       StyleVariant="Filled" Watermark="{L FlowUntitled}" FontSize="12" />
+                                    </StackPanel>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowNodesLinks}" Classes="flow-label" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" Text="{Binding StatisticsText}" Classes="flow-mono" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowCurrentZoom}" Classes="flow-label" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" Text="{Binding ZoomText}" Classes="flow-mono" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowSaveState}" Classes="flow-label" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" Text="{Binding SaveStateText}" Classes="flow-mono"
+                                                   Foreground="{DynamicResource FlowSuccessBrush}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Classes="flow-inspector-card">
+                                <StackPanel Spacing="7">
+                                    <TextBlock Text="{L FlowShortcuts}" Classes="flow-section-title" />
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowSave}" Classes="flow-label" />
+                                        <TextBlock Grid.Column="1" Text="Ctrl + S" Classes="flow-mono" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowShortcutUndoRedo}" Classes="flow-label" />
+                                        <TextBlock Grid.Column="1" Text="Ctrl + Z / Y" Classes="flow-mono" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowDuplicateSelected}" Classes="flow-label" />
+                                        <TextBlock Grid.Column="1" Text="Ctrl + D" Classes="flow-mono" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowShortcutFit}" Classes="flow-label" />
+                                        <TextBlock Grid.Column="1" Text="Ctrl + 0" Classes="flow-mono" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="{L FlowPreviewMode}" Classes="flow-label" />
+                                        <TextBlock Grid.Column="1" Text="F5" Classes="flow-mono" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- 状态栏 -->
+        <Border Grid.Row="3" Background="{DynamicResource FlowPanelBrush}" BorderBrush="{DynamicResource FlowBorderBrush}" BorderThickness="0,1,0,0" Padding="14,6">
+            <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <Ellipse Width="6" Height="6" Fill="{DynamicResource FlowSuccessBrush}" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding StatusText}" FontSize="10.5" Foreground="{DynamicResource FlowMutedBrush}" />
+                </StackPanel>
+                <TextBlock Grid.Column="1" Text="{Binding PointerText}" Classes="flow-mono" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="14" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding StatisticsText}" FontSize="10" Foreground="{DynamicResource FlowMutedBrush}" />
+                    <TextBlock Text="{Binding ZoomText}" FontSize="10" Foreground="{DynamicResource FlowMutedBrush}" />
+                    <TextBlock Text="{L FlowStatusHint}" FontSize="10" Foreground="{DynamicResource FlowMutedBrush}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- DragPreviewControl -->
+    <x:String x:Key="DragPreviewControlDockString">停靠</x:String>
+    <x:String x:Key="DragPreviewControlFloatString">浮动</x:String>
+    <x:String x:Key="DragPreviewControlNoneString">无</x:String>
+
+    <!-- DocumentTabStripItem -->
+    <x:String x:Key="DocumentTabStripItemFloatString">浮动</x:String>
+    <x:String x:Key="DocumentTabStripItemFloatAllString">关闭所有浮动</x:String>
+    <x:String x:Key="DocumentTabStripItemCloseString">关闭</x:String>
+    <x:String x:Key="DocumentTabStripItemCloseOtherTabsString">关闭其它</x:String>
+    <x:String x:Key="DocumentTabStripItemCloseAllTabsString">全部关闭</x:String>
+    <x:String x:Key="DocumentTabStripItemCloseTabsLeftString">关闭左侧</x:String>
+    <x:String x:Key="DocumentTabStripItemCloseTabsRightString">关闭右侧</x:String>
+    <x:String x:Key="DocumentTabStripItemCloseTabsAboveString">关闭上方</x:String>
+    <x:String x:Key="DocumentTabStripItemCloseTabsBelowString">关闭下方</x:String>
+    <x:String x:Key="DocumentTabStripItemNewHorizontalDockString">新建水平文档停靠栏</x:String>
+    <x:String x:Key="DocumentTabStripItemNewVerticalDockString">新建垂直文档停靠栏</x:String>
+    <x:String x:Key="DocumentTabStripItemTabLayoutString">标签页布局</x:String>
+    <x:String x:Key="DocumentTabStripItemTabLayoutLeftString">将标签页放置在左侧(_P)</x:String>
+    <x:String x:Key="DocumentTabStripItemTabLayoutTopString">将标签页放置在顶部(_T)</x:String>
+    <x:String x:Key="DocumentTabStripItemTabLayoutRightString">将标签页放置在右侧(_R)</x:String>
+    <x:String x:Key="DocumentTabStripItemLayoutModeString">布局模式</x:String>
+    <x:String x:Key="DocumentTabStripItemLayoutModeTabbedString">标签页模式</x:String>
+    <x:String x:Key="DocumentTabStripItemLayoutModeMdiString">MDI 模式（多文档界面）</x:String>
+
+    <!-- ToolPinItemControl（工具固定项控件） -->
+    <x:String x:Key="ToolPinItemControlFloatString">浮动(_F)</x:String>
+    <x:String x:Key="ToolPinItemControlShowString">显示(_S)</x:String>
+    <x:String x:Key="ToolPinItemControlDockAsDocumentString">停靠为标签页文档</x:String>
+    <x:String x:Key="ToolPinItemControlCloseString">关闭(_C)</x:String>
+
+    <!-- ToolChromeControl（工具边框控件） -->
+    <x:String x:Key="ToolChromeControlFloatString">浮动(_F)</x:String>
+    <x:String x:Key="ToolChromeControlDockString">停靠(_D)</x:String>
+    <x:String x:Key="ToolChromeControlAutoHideString">自动隐藏(_A)</x:String>
+    <x:String x:Key="ToolChromeControlDockAsDocumentString">停靠为标签页文档</x:String>
+    <x:String x:Key="ToolChromeControlCloseString">关闭(_C)</x:String>
+
+    <!-- ToolTabStripItem（工具标签栏项） -->
+    <x:String x:Key="ToolTabStripItemFloatString">浮动(_F)</x:String>
+    <x:String x:Key="ToolTabStripItemFloatAllString">全部浮动</x:String>
+    <x:String x:Key="ToolTabStripItemDockString">停靠(_D)</x:String>
+    <x:String x:Key="ToolTabStripItemAutoHideString">自动隐藏(_A)</x:String>
+    <x:String x:Key="ToolTabStripItemDockAsDocumentString">停靠为标签页文档</x:String>
+    <x:String x:Key="ToolTabStripItemCloseString">关闭(_C)</x:String>
+
+     <x:String x:Key="AvalonDockHideString">隐藏</x:String>
+    <x:String x:Key="AvalonDockNewHorizontalTabGroupString">新建横向分组</x:String>
+    <x:String x:Key="AvalonDockNewVerticalTabGroupString">新建纵向分组</x:String>
+    <x:String x:Key="AvalonDockMoveToNextTabGroupString">移到下一组</x:String>
+    <x:String x:Key="AvalonDockMoveToPreviousTabGroupString">移到上一组</x:String>
+</ResourceDictionary>

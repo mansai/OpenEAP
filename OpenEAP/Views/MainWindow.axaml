@@ -1,0 +1,122 @@
+﻿<atom:Window  xmlns="https://github.com/avaloniaui"
+			  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			  xmlns:atom="https://atomui.net"
+			  xmlns:icon="https://atomui.net/icons/antdesign"
+			  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			  x:Class="OpenEAP.Views.MainWindow"
+			  x:DataType="MainViewModel"
+			  Icon="/Assets/avalonia-logo.ico"
+			  IsPinCaptionButtonVisible="True"
+			  IsFullScreenCaptionButtonVisible="True"
+			  Title="{x:Null}"
+			  Width="1200"
+			  Height="720"
+			  WindowState="Maximized">
+	<atom:Window.KeyBindings>
+		<KeyBinding Gesture="Ctrl+Q" Command="{Binding Exit}" />
+	</atom:Window.KeyBindings>
+	<atom:Window.LeftAddOn>
+		<StackPanel Orientation="Horizontal" Spacing="10">
+			<atom:Button ButtonType="Text" Icon="{icon:AntDesignIconProvider MenuFoldOutlined}" Command="{Binding ToggleInlineCollapsed}" />
+			<atom:Menu>
+				<atom:MenuItem Header="{L MenuFile}">
+					<atom:MenuSeparator />
+					<atom:MenuItem Header="{L Exit}" InputGesture="CTRL+Q" Command="{Binding Exit}" />
+				</atom:MenuItem>
+				<atom:MenuItem Header="{L MenuEdit}">
+					<atom:MenuItem Header="{L Cut}" InputGesture="Ctrl+X" Icon="{icon:AntDesignIconProvider Kind=ScissorOutlined}" />
+					<atom:MenuItem Header="{L Copy}" InputGesture="Ctrl+C" Icon="{icon:AntDesignIconProvider Kind=CopyOutlined}" />
+					<atom:MenuItem Header="{L Paste}" InputGesture="Ctrl+V" Icon="{icon:AntDesignIconProvider Kind=FileDoneOutlined}" />
+				</atom:MenuItem>
+				<atom:MenuItem Header="{L MenuView}">
+					<atom:MenuItem Header="{L HideMenu}"  Command="{Binding RemoveSplitViewDock}" />
+					<atom:MenuItem Header="{L ShowMenu}" Command="{Binding ShowSplitViewDock}" />
+					<atom:MenuSeparator />
+					<atom:MenuItem Header="{L ShowLeftTool}" Command="{Binding ShowLeftTool}" />
+					<atom:MenuItem Header="{L ShowSearch}" Command="{Binding ShowSearch}" />
+					<atom:MenuItem Header="{L ShowStatusBar}" Command="{Binding StatusBar}" />
+				</atom:MenuItem>
+				<atom:MenuItem Header="{L MenuTool}">
+					<atom:MenuItem Header="{L Excel}"  Command="{Binding Excel}"/>
+					<atom:MenuItem Header="{L PdfViewer}"  Command="{Binding PdfViewer}"/>
+					<atom:MenuItem Header="{L MediaPlayer}"  Command="{Binding MediaPlayer}"/>
+				</atom:MenuItem>
+			<!--	<atom:MenuItem Header="{L MenuWindow}">
+					<atom:MenuItem Header="{L SaveWindowLayout}"  Command="{Binding SaveWorkspaceA}"/>
+					<atom:MenuItem Header="{L LoadWindowLayout}"  Command="{Binding LoadWorkspaceA}"/>
+					<atom:MenuItem Header="{L ResetWindowLayout}"  Command="{Binding ResetLayout}"/>
+					<atom:MenuItem Header="{L ExportLayout}"  Command="{Binding SaveLayout}"/>
+					<atom:MenuItem Header="{L OpenLayout}"  Command="{Binding OpenLayout}"/>
+				</atom:MenuItem>-->
+			</atom:Menu>
+			<atom:LineEdit Watermark="{L Search}" IsVisible="{Binding IsShowSearch}" InnerLeftContent="{icon:AntDesignIconProvider SearchOutlined}" StyleVariant="Filled" Width="200">
+				<Interaction.Behaviors>
+					<EventTriggerBehavior EventName="TextChanged">
+						<CallMethodAction MethodName="LineEdit_TextChanged" TargetObject="{Binding $self.DataContext}" />
+					</EventTriggerBehavior>
+				</Interaction.Behaviors>
+			</atom:LineEdit>
+		</StackPanel>
+	</atom:Window.LeftAddOn>
+	<atom:Window.RightAddOn>
+		<StackPanel Orientation="Horizontal" Spacing="10">
+			<atom:Menu>
+				<atom:MenuItem Header="{L Theme}" Icon="{icon:AntDesignIconProvider BgColorsOutlined}">
+					<atom:MenuItem Header="{L Dark}" Command="{Binding Theme}" CommandParameter="Dark" />
+					<atom:MenuItem Header="{L Light}" Command="{Binding Theme}" CommandParameter="DaybreakBlue" />
+					<atom:MenuItem Header="{L Compact}" Command="{Binding Theme}" CommandParameter="Compact" />
+					<atom:MenuItem Header="{L Normal}" Command="{Binding Theme}" CommandParameter="Normal" />
+				</atom:MenuItem>
+				<atom:MenuItem Header="{L Language}" Icon="{icon:AntDesignIconProvider TranslationOutlined}">
+					<atom:MenuItem Header="{L Chinese}"  Command="{Binding Language}" CommandParameter="zh-Hans"/>
+					<atom:MenuItem Header="{L English}" Command="{Binding Language}" CommandParameter="en-US" />
+				</atom:MenuItem>
+			</atom:Menu>
+			<atom:Space VerticalAlignment="Center" ItemSpacing="-3" LineSpacing="30">
+				<atom:Tag TagColor="success" Text="{L Version}" />
+				<atom:Tag TagColor="success" Text="{Binding Version}" />
+			</atom:Space>
+			<atom:Button ToolTip.Tip="提示" ToolTip.Placement="LeftEdgeAlignedBottom" ButtonType="Text" Icon="{icon:AntDesignIconProvider SettingOutlined}" Command="{Binding Setting}" />
+		</StackPanel>
+	</atom:Window.RightAddOn>
+	<Grid RowDefinitions="*,Auto">
+		<DockControl Grid.Row="0" Layout="{Binding Layout}"
+					 Factory="{Binding Factory}"
+					 IsDockingEnabled="{Binding IsDockingEnabled}"
+					 InitializeFactory="True"
+					 InitializeLayout="True" />
+		<Border Grid.Row="1" IsVisible="{Binding IsShowStatusBar}"
+				BorderBrush="{DynamicResource PanelBorderBrush}"
+				BorderThickness="0,1,0,0"
+				Padding="16,8">
+			<Grid ColumnDefinitions="*,Auto" VerticalAlignment="Center">
+				<TextBlock Text="{Binding WorkspaceStatus}" Classes="muted" />
+				<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12">
+					<TextBlock Text="Zoom 100%" Classes="muted" />
+					<TextBlock Text="Snap On" Classes="muted" />
+				</StackPanel>
+			</Grid>
+		</Border>
+		<atom:Drawer IsOpen="{Binding DrawerOpen}"
+					 Title="{L SysConfig}">
+			<atom:NavMenu HorizontalAlignment="Stretch">
+				<atom:NavMenuNode Header="{L CustomMenu}" Command="{Binding MenuSetting}" CommandParameter="{Binding $self}"
+								  Icon="{icon:AntDesignIconProvider Kind=MenuFoldOutlined}"
+								  ItemKey="Menu" />
+				<atom:NavMenuNode Header="{L CustomLanguage}" Command="{Binding MenuSetting}" CommandParameter="{Binding $self}"
+								  Icon="{icon:AntDesignIconProvider Kind=TranslationOutlined}"
+								  ItemKey="LanguageView" />
+				<atom:NavMenuNode Header="导航1" Command="{Binding MenuSetting}" CommandParameter="{Binding $self}"
+								  Icon="{icon:AntDesignIconProvider Kind=MailOutlined}"
+								  ItemKey="NavigationOne">
+					<atom:NavMenuNode Header="d1" ItemKey="Option5" Command="{Binding MenuSetting}" CommandParameter="{Binding $self}" />
+					<atom:NavMenuNode Header="d2" ItemKey="Option6" Command="{Binding MenuSetting}" CommandParameter="{Binding $self}" />
+					<atom:NavMenuNode Header="d3" ItemKey="Option7" Command="{Binding MenuSetting}" CommandParameter="{Binding $self}" />
+					<atom:NavMenuNode Header="d4" ItemKey="Option8" Command="{Binding MenuSetting}" CommandParameter="{Binding $self}" />
+				</atom:NavMenuNode>
+			</atom:NavMenu>
+		</atom:Drawer>
+	</Grid>
+</atom:Window>

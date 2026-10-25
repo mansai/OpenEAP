@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:atom="https://atomui.net"
+			 xmlns:icon="https://atomui.net/icons/antdesign"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Class="OpenEAP.Views.LanguageView" x:DataType="LanguageViewModel">
+	<atom:Splitter Orientation="Vertical" >
+		<Interaction.Behaviors>
+			<EventTriggerBehavior EventName="ResizeCompleted">
+				<CallMethodAction MethodName="Splitter_ResizeCompleted" TargetObject="{Binding $self.DataContext}" />
+			</EventTriggerBehavior>
+		</Interaction.Behaviors>
+		<Grid RowDefinitions="auto,*" Margin="{DynamicResource DefaultMargin}" atom:Splitter.Size="{Binding LeftPanelWidth}">
+			<atom:Space>
+				<atom:Button Icon="{icon:AntDesignIconProvider PlusCircleOutlined}" Content="{L Add}" Command="{Binding AddLocalization}"></atom:Button>
+				<atom:Button Icon="{icon:AntDesignIconProvider SaveOutlined}" Content="{L Save}"></atom:Button>
+			</atom:Space>
+			<DataGrid Grid.Row="1" ItemsSource="{Binding Localization}" SelectedIndex="{Binding LocalizationSelectedIndex}"
+					  CanUserResizeColumns="True"
+					  CanUserReorderColumns="True"
+					  CanUserDeleteRows="False"
+					  CanUserSortColumns="True"
+					  CanUserReorderRows="True"
+					  HeadersVisibility="All">
+				<Interaction.Behaviors>
+					<EventTriggerBehavior EventName="SelectionChanged">
+						<CallMethodAction MethodName="SelectionChanged" TargetObject="{Binding $self.DataContext}" />
+					</EventTriggerBehavior>
+				</Interaction.Behaviors>
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="{L Language}" Binding="{Binding Culture}" />
+					<DataGridTextColumn Header="{L Name}" Binding="{Binding CultureName}" Width="*" />
+					<DataGridTextColumn Header="{L CreationTime}" Binding="{Binding CreationTime}" IsReadOnly="True" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+		<Grid RowDefinitions="auto,*" Margin="{StaticResource DefaultMargin}" atom:Splitter.Size="{Binding RightPanelWidth}">
+			<atom:Space>
+				<atom:Button Icon="{icon:AntDesignIconProvider PlusCircleOutlined}" Content="{L Add}" Command="{Binding AddResources}"></atom:Button>
+				<atom:Button Icon="{icon:AntDesignIconProvider SaveOutlined}" Content="{L Save}" Command="{Binding SaveResources}"></atom:Button>
+				<atom:LineEdit Watermark="{L Search}" InnerLeftContent="{icon:AntDesignIconProvider SearchOutlined}" StyleVariant="Filled" Width="300" >
+					<Interaction.Behaviors>
+						<EventTriggerBehavior EventName="TextChanged">
+							<CallMethodAction MethodName="LineEdit_TextChanged" TargetObject="{Binding $self.DataContext}" />
+						</EventTriggerBehavior>
+					</Interaction.Behaviors>
+				</atom:LineEdit>
+			</atom:Space>
+			<DataGrid Grid.Row="1" ItemsSource="{Binding ResourcesEntity}"
+					  CanUserResizeColumns="True"
+					  CanUserReorderColumns="True"
+					  CanUserSortColumns="True"
+					  CanUserReorderRows="True"
+					  HeadersVisibility="All">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="{L Key}" Binding="{Binding Key}" />
+					<DataGridTextColumn Header="{L Value}" Binding="{Binding Value}" Width="*" />
+					<DataGridTextColumn Header="{L CreationTime}" Binding="{Binding CreationTime}" IsReadOnly="True" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+	</atom:Splitter>
+</UserControl>

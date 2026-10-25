@@ -1,0 +1,50 @@
+﻿<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:atom="https://atomui.net"
+             x:Class="OpenEAP.App"
+             xmlns:local="using:OpenEAP"
+             RequestedThemeVariant="Default">
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <DataTemplate DataType="DocumentViewModel">
+            <DocumentView />
+        </DataTemplate>
+        <DataTemplate DataType="ToolViewModel">
+            <ToolView />
+        </DataTemplate>
+        <DataTemplate DataType="NavigationViewModel">
+            <NavigationView />
+        </DataTemplate>
+        <DataTemplate DataType="LogViewModel">
+            <LogView />
+        </DataTemplate>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.Charts/Themes/Default.axaml" />
+        <StyleInclude Source="avares://Avalonia.Controls.PdfViewer/Themes/Default.axaml" />
+        <StyleInclude Source="avares://Avalonia.Controls.VirtualKeyboard/Themes/Fluent.axaml"/>
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.v2.xaml" />
+        <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
+        <MediaFluentTheme/>
+        <DockFluentTheme />
+        <StyleInclude Source="avares://OpenEAP/Styles/Theme.axaml" />
+        <StyleInclude Source="avares://OpenEAP/Styles/Home.axaml" />
+    </Application.Styles>
+    <TrayIcon.Icons>
+        <TrayIcons>
+            <TrayIcon Icon="/Assets/logo.png"
+                      ToolTipText="{L OpenEAP}" Clicked="TrayIcon_Clicked">
+                <TrayIcon.Menu>
+                    <NativeMenu>
+                        <!--<NativeMenuItemSeparator />-->
+                        <NativeMenuItem Header="{L Exit}" Click="NativeMenuItem_Click" CommandParameter="Exit" />
+                    </NativeMenu>
+                </TrayIcon.Menu>
+            </TrayIcon>
+        </TrayIcons>
+    </TrayIcon.Icons>
+</Application>

@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Lib/" />
+  <Project Path="Common/Common.csproj" Id="1b3f6a26-bbe4-4c9f-b5e7-c95ff9228250" />
+  <Project Path="Model/Model.csproj" Id="49ce2d72-9802-4fcf-97c3-33feaae33f6e" />
+  <Project Path="OpenEAP/OpenEAP.csproj" Id="a550647d-f382-4faa-b54a-7b57f7db2c02" />
+</Solution>

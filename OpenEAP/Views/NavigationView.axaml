@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:atom="https://atomui.net"
+             xmlns:icon="https://atomui.net/icons/antdesign"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="OpenEAP.Views.NavigationView"
+             x:DataType="NavigationViewModel" >
+<!--  <atom:NavMenu HorizontalAlignment="Stretch" IsInlineCollapsed="{Binding IsInlineCollapsed}">
+        <atom:NavMenuNode Header="选项1"
+                          Icon="{icon:AntDesignIconProvider Kind=PieChartOutlined}"
+                          ItemKey="Option1" />
+        <atom:NavMenuNode Header="选项2"
+                          Icon="{icon:AntDesignIconProvider Kind=DesktopOutlined}"
+                          ItemKey="Option2" />
+        <atom:NavMenuNode Header="选项3"
+                          Icon="{icon:AntDesignIconProvider Kind=ContainerOutlined}"
+                          ItemKey="Option3" />
+        <atom:NavMenuNode Header="导航1"
+                          Icon="{icon:AntDesignIconProvider Kind=MailOutlined}"
+                          ItemKey="NavigationOne">
+            <atom:NavMenuNode Header="d1" ItemKey="Option5" />
+            <atom:NavMenuNode Header="d2" ItemKey="Option6" />
+            <atom:NavMenuNode Header="d3" ItemKey="Option7" />
+            <atom:NavMenuNode Header="d4" ItemKey="Option8" />
+        </atom:NavMenuNode>
+        <atom:NavMenuNode Header="导航2"
+                          Icon="{icon:AntDesignIconProvider Kind=AppstoreOutlined}"
+                          ItemKey="NavigationTwo">
+            <atom:NavMenuNode Header="e11" ItemKey="NavigationTwoOption1" />
+            <atom:NavMenuNode Header="e2" ItemKey="NavigationTwoOption2" />
+        </atom:NavMenuNode>
+    </atom:NavMenu>-->
+     <atom:NavMenu HorizontalAlignment="Stretch" IsInlineCollapsed="{Binding IsInlineCollapsed}"  ItemsSource="{Binding MenuItems}">
+	</atom:NavMenu>	
+</UserControl>
